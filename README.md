@@ -1,4 +1,4 @@
-# Kalloway & Thayer Systems — `KT-pipeline-core`
+# Kalloway & Thayer Systems - `KT-pipeline-core`
 
 **Sub-5ms Enterprise Ingestion & Payload Normalization Primitives for ServiceTitan & Jobber**
 
@@ -80,6 +80,7 @@ JSON
     }
   }
 }
+```
 
 Architecture Documentation
 
