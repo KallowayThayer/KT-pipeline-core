@@ -1,4 +1,4 @@
-# Kalloway & Thayer Systems — KT-Pipeline-Core
+# Kalloway & Thayer Systems - KT-Pipeline-Core
 
 > **Sub-5ms Enterprise Ingestion & Payload Normalization Middleware for ServiceTitan & Jobber**
 
