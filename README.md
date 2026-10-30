@@ -83,8 +83,8 @@ JSON
 
 Architecture Documentation
 
-See docs/architecture.md for data-flow topology, sliding-window TTL ledger specifications, Dead-Letter Quarantine (DLQ) redaction rules, and supported downstream adapter contracts (servicetitan_v2, jobber_graphql, housecall_pro, hubspot_v3).
-
-Operated strictly as an asynchronous engineering consultancy. Zero sales calls.
+See [docs/architecture.md](./docs/architecture.md) for data-flow topology, sliding-window TTL ledger specifications, Dead-Letter Quarantine (DLQ) redaction rules, and supported downstream adapter contracts (servicetitan_v2, jobber_graphql, housecall_pro, hubspot_v3`).
 
 For managed private endpoint deployment and asynchronous architecture reviews, visit kallowaythayer.com.
+
+Operated strictly as an asynchronous engineering consultancy. Zero sales calls.
