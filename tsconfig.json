@@ -8,7 +8,9 @@
     "strictNullChecks": true,
     "noUncheckedIndexedAccess": true,
     "skipLibCheck": true,
-    "noEmit": true
+    "noEmit": false,
+    "declaration": true,
+    "outDir": "./dist"
   },
   "include": ["src/**/*.ts"]
 }
