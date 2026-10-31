@@ -6,34 +6,36 @@
 
 `KT-pipeline-core` is a high-throughput, fault-tolerant ingestion proxy engineered to normalize, sanitize, and validate inbound webhooks and lead payloads before they hit downstream field service CRMs (ServiceTitan, Jobber, Housecall Pro, HubSpot, Salesforce, and GoHighLevel).
 
-Designed to operate in zero-trust, high-concurrency production environments, the engine executes multi-tenant edge routing, in-memory telephony sanitization, and deterministic dual-hash idempotency in **under 5 milliseconds** of transient compute.
+Designed to operate in zero-trust, high-concurrency production environments, the engine executes multi-tenant edge routing, in-memory telephony sanitization, and deterministic dual-hash idempotency in **under 5 milliseconds** of transient compute. 
+
+* **Extreme Concurrency Benchmarks:** Adversarial stress-tested at **1,000 concurrent webhooks in 329.74 ms** with **0 socket drops** and a minimal **5.1 MB RAM memory footprint** on a pure V8 native edge runtime.
 
 ---
 
 ## Architecture & Data Flow
 
     [Inbound Webhooks / Meta / Google LSA / Custom APIs]
-                             |
-                             v
+                        |
+                        v
     +--------------------------------------------------------+
     |        Ingress Boundary & HMAC Header Verification     |
     +--------------------------------------------------------+
-                             |
-                             v
+                        |
+                        v
     +--------------------------------------------------------+
     |      Multi-Source Flattening & Universal Extraction    |
     +--------------------------------------------------------+
-                             |
-                             v
+                        |
+                        v
     +--------------------------------------------------------+
     |     In-Memory Sanitization & Schema Normalization      |
     |     - NANP / E.164 Telephony Validation & Ext Split    |
     |     - RFC-5322 Email Parsing & Domain Heuristics       |
     |     - DJB2 + FNV-1a Dual-Hash Idempotency Ledger       |
     +--------------------------------------------------------+
-                             |
-                             +-----------------------+ (Valid)
-                             v (Invalid / Duplicate) v
+                        |
+                        +-----------------------+ (Valid)
+                        v (Invalid / Duplicate) v
              +-----------------------+ +-----------------------+
              | PII-Redacted DLQ /    | | Multi-CRM Adapter     |
              | Quarantine Envelope   | | Payload Structuring   |
@@ -49,16 +51,21 @@ Inbound payloads arrive across fragmented schemas (Meta Lead Ads, Google LSA Lea
 
 ### 2. Deterministic Dual-Hash Idempotency
 
-To eliminate race conditions, webhook retry storms, and mobile double-tap collisions without disk I/O, the engine computes a composite 64-bit non-cryptographic fingerprint pairing **DJB2** and **FNV-1a**:
+To eliminate race conditions, webhook retry storms, and mobile double-tap collisions without disk I/O or SQLite database locking, the engine computes a composite 64-bit non-cryptographic fingerprint pairing **DJB2** and **FNV-1a** entirely in ephemeral volatile RAM:
 
 - **Event-Level Lock:** Evaluates upstream idempotency headers (`X-Idempotency-Key`, `Svix-ID`) against an in-memory **24-hour (`86,400s`) TTL** sliding-window ledger.
+
 - **Content-Level Lock:** Computes a canonical payload fingerprint (`phone`, `email`, `trade_category`, `service`) enforced across a **1-hour (`3,600s`) TTL** window to suppress rapid-fire duplicate dispatches across concurrent ad webhooks.
+
 
 ### 3. Strict Telephony & Entity Sanitization
 
 - **E.164 Normalization:** Isolates extension strings (`ext. 104`), resolves NANP country prefixes, and validates 10-digit subscriber bounds before downstream CRM validation can reject the record.
+
 - **Entity & Name Parsing:** Distinguishes commercial accounts from residential leads, strips honorifics/suffixes, and normalizes casing.
+
 - **Trade Taxonomy Classification:** Classifies unstructured service notes across 12 core trade verticals (HVAC, Plumbing, Roofing, Electrical, Solar, Restoration, Garage Door, Pest Control, Septic, Landscaping, Foundation, Remodeling).
+
 
 ### 4. Dead-Letter Quarantine (DLQ) Isolation
 
@@ -78,3 +85,15 @@ Target schema compilation is controlled per route via tenant configuration maps 
 | `hubspot_v3` | HubSpot | v3 Contacts `properties` object map for lifecycle synchronization |
 | `salesforce_lead` | Salesforce | Standard `Lead` SObject payload (`FirstName`, `LastName`, `Company`, `Phone`) |
 | `gohighlevel_v2` | GoHighLevel | v2 Contact inbound schema with automated pipeline tagging (`kt-sanitized`) |
+
+---
+
+## Architecture Documentation
+
+See [`docs/architecture.md`](./docs/architecture.md) for data-flow topology, sliding-window TTL ledger specifications, Dead-Letter Quarantine (DLQ) redaction rules, and supported downstream adapter contracts.
+
+To audit live schema sanitization, multi-CRM routing, and idempotency performance against unformatted payloads, access the interactive live audit on our site.
+
+For managed private endpoint deployment and asynchronous architecture reviews, visit kallowaythayer.com
+
+Operated strictly as an asynchronous engineering consultancy. Zero sales calls.
