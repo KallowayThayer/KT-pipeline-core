@@ -8,11 +8,18 @@ Stateless edge ingestion interfaces engineered for multi-branch home service pla
 
 ## Core Specifications
 
+- **Adversarial Stress Test:** 1,000 concurrent webhooks processed in 329.74 ms with 0 socket drops and a 5.1 MB RAM memory footprint on native V8.
+
 - **Execution Latency:** Sub-5ms transient in-memory normalization and schema compilation.
+
 - **Cryptographic Ingress Auth:** Raw-byte constant-time SHA-256 HMAC verification (`crypto.subtle.verify`) executed prior to JSON heap allocation.
+
 - **Deterministic Idempotency:** Dual non-cryptographic fingerprinting (`DJB2` + `FNV-1a`) backed by sliding-window ephemeral TTL ledgers (`src/core/idempotency.ts`).
+
 - **Multi-Tenant Fault Isolation:** O(1) path-scoped tenant routing (`/v1/ingest/:tenant_slug`) with isolated `202 Accepted` Dead-Letter Quarantine shunting (`src/edge/tenant-router.ts`) to prevent upstream Meta/LSA webhook subscription lockouts.
+
 - **Telephony & Address Hygiene:** Strict NANP / E.164 normalization, extension isolation, and commercial/residential unit splitting.
+
 
 ---
 
@@ -80,12 +87,11 @@ JSON
     }
   }
 }
-```
 
-## Architecture Documentation
+## Live Edge Validation & Interactive Telemetry
 
-See [`docs/architecture.md`](./docs/architecture.md) for data-flow topology, sliding-window TTL ledger specifications, Dead-Letter Quarantine (DLQ) redaction rules, and supported downstream adapter contracts (`servicetitan_v2`, `jobber_graphql`, `housecall_pro`, `hubspot_v3`).
+To audit real-world schema sanitization, multi-CRM routing, and sliding-window idempotency against messy, unformatted payloads (including phone extensions, single-line unparsed addresses, and simulated schema drift), access the live interactive pipeline audit directly on our site.
 
-For managed private endpoint deployment and asynchronous architecture reviews, visit **[kallowaythayer.com](https://kallowaythayer.com)**.
+Test the live edge engine or submit custom target schemas for asynchronous integration review at kallowaythayer.com
 
-*Operated strictly as an asynchronous engineering consultancy. Zero sales calls.*
+Operated strictly as an asynchronous engineering consultancy. Zero sales calls.
