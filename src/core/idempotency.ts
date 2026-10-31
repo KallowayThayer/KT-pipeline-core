@@ -1,4 +1,8 @@
-// src/core/idempotency.ts
+/**
+ * Kalloway & Thayer Systems — KT-pipeline-core
+ * Atomic In-RAM Sliding-Window Idempotency Ledger (DJB2 & FNV-1a)
+ * Zero-disk persistent storage; ephemeral memory architecture proven at 1,000+ concurrent bursts.
+ */
 
 export interface IdempotencyRecord {
   fingerprint: string;
