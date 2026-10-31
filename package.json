@@ -1,6 +1,6 @@
 {
   "name": "@kallowaythayer/kt-pipeline-core",
-  "version": "0.3.0",
+  "version": "1.0.0",
   "description": "Open-core ingress interfaces, constant-time HMAC verification, and dual-hash idempotency primitives for high-volume trade CRM pipelines.",
   "type": "module",
   "main": "src/index.ts",
