@@ -8,7 +8,7 @@ Stateless edge ingestion interfaces engineered for multi-branch home service pla
 
 ## Core Specifications
 
-- **Adversarial Stress Test:** 1,000 concurrent webhooks processed in 329.74 ms with 0 socket drops and a 5.1 MB RAM memory footprint on native V8.
+- **High-Concurrency Stress Test:** 1,000 concurrent webhooks processed in 329.74 ms with 0 socket drops and a 5.1 MB RAM memory footprint on native V8.
 
 - **Execution Latency:** Sub-millisecond transient in-memory normalization and schema compilation (~0.42ms average latency).
 
