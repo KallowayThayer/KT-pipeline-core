@@ -88,7 +88,7 @@ JSON
     }
   }
 }
-
+```
 Live Edge Validation & Interactive Telemetry
 
 To audit real-world schema sanitization, multi-CRM routing, and sliding-window idempotency against messy, unformatted payloads (including phone extensions, single-line unparsed addresses, and simulated schema drift), access the live interactive pipeline audit directly on our site.
