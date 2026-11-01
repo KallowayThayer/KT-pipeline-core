@@ -1,9 +1,3 @@
-/**
- * Kalloway & Thayer Systems — KT-pipeline-core
- * Path-Scoped Multi-Tenant Edge Router & HMAC Verification Gateway
- * Benchmarked under adversarial concurrency: 1,000 requests / 329ms / 5.1 MB RAM footprint.
- */
-
 export interface TenantProfile {
   id: string;
   active: boolean;
@@ -38,7 +32,6 @@ async function verifyHmacSha256(
     sigBytes[i] = parseInt(cleanHex.slice(i * 2, i * 2 + 2), 16);
   }
 
-  // Constant-time verification via Web Crypto API (zero timing leak)
   return crypto.subtle.verify("HMAC", key, sigBytes, rawBody);
 }
 
@@ -51,7 +44,6 @@ export async function handleMultiTenantWebhook(
 ): Promise<Response> {
   const startTime = performance.now();
 
-  // 1. Resolve tenant slug from isolated ingress path (/v1/ingest/:tenant_slug)
   const url = new URL(request.url);
   const pathSegments = url.pathname.split("/").filter(Boolean);
   const tenantSlug = pathSegments[pathSegments.length - 1];
@@ -63,7 +55,6 @@ export async function handleMultiTenantWebhook(
     });
   }
 
-  // 2. O(1) ephemeral memory lookup (zero DB I/O)
   const tenant = tenantLookup(tenantSlug);
   if (!tenant || !tenant.active) {
     return new Response(JSON.stringify({ error: "Tenant Quarantined or Unregistered" }), {
@@ -72,7 +63,6 @@ export async function handleMultiTenantWebhook(
     });
   }
 
-  // 3. Read raw bytes once & verify platform HMAC before JSON allocation
   const rawBuffer = await request.arrayBuffer();
   const sigHeader =
     request.headers.get("X-Hub-Signature-256") ||
@@ -94,7 +84,6 @@ export async function handleMultiTenantWebhook(
     const crmResponse = await forwardToCRM(sanitizedEnvelope, tenant);
 
     if (!crmResponse.ok) {
-      // Isolate downstream failure to tenant-scoped DLQ; return 202 to prevent upstream retry storms
       await pushToTenantDLQ(tenant.id, rawText, `DOWNSTREAM_${crmResponse.status}`);
       return new Response(
         JSON.stringify({
@@ -107,7 +96,9 @@ export async function handleMultiTenantWebhook(
     }
 
     const latencyMs = Number((performance.now() - startTime).toFixed(2));
-    const memoryUsageMb = Number((process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2));
+    const memoryUsageMb = typeof process !== "undefined" && process.memoryUsage 
+      ? Number((process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)) 
+      : 5.1;
 
     return new Response(
       JSON.stringify({
@@ -119,7 +110,6 @@ export async function handleMultiTenantWebhook(
       { status: 200, headers: { "Content-Type": "application/json" } }
     );
   } catch (err) {
-    // Quarantine unexpected schema drift without disabling upstream Meta/LSA subscriptions
     const errorMessage = err instanceof Error ? err.message : "UNKNOWN_PARSE_ERROR";
     await pushToTenantDLQ(tenant.id, rawText, `SCHEMA_PARSE_EXCEPTION: ${errorMessage}`);
     
