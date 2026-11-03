@@ -1,6 +1,6 @@
 # Kalloway & Thayer Systems - `KT-pipeline-core`
 
-**Sub-Millisecond Enterprise Ingestion & Payload Normalization Primitives for ServiceTitan & Jobber**
+**Sub-Millisecond Enterprise Ingestion & Payload Normalization Primitives for ServiceTitan & Enterprise ERPs**
 
 Stateless edge ingestion interfaces engineered for multi-branch home service platforms, PE trade roll-ups, and high-volume trade contractors. Intercepts raw webhooks from Google LSA, Meta Lead Ads, aggregators, and regional web forms to guarantee clean, deduplicated downstream CRM injection with zero PII stored at rest.
 
