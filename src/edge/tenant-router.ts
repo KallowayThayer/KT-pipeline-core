@@ -2,7 +2,7 @@ export interface TenantProfile {
   id: string;
   active: boolean;
   webhookSecret: string;
-  crmAdapter: "servicetitan_v2" | "jobber_graphql";
+  crmAdapter: "servicetitan_v2" | "sage_intacct";
   crmEndpoint: string;
   businessUnitId: number;
   schemaRules: Record<string, unknown>;
