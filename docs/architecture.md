@@ -4,7 +4,7 @@
 
 ## Overview
 
-`KT-pipeline-core` is a high-throughput, fault-tolerant ingestion proxy engineered to normalize, sanitize, and validate inbound webhooks and lead payloads before they hit downstream field service CRMs (ServiceTitan, Jobber, Housecall Pro, HubSpot, Salesforce, and GoHighLevel).
+`KT-pipeline-core` is a high-throughput, fault-tolerant ingestion proxy engineered to normalize, sanitize, and validate inbound webhooks and lead payloads before they hit downstream field service CRMs (ServiceTitan, Jobber, Housecall Pro, HubSpot, Salesforce,GoHighLevel & Enterprise ERPs).
 
 Designed to operate in zero-trust, high-concurrency production environments, the engine executes multi-tenant edge routing, in-memory telephony sanitization, and deterministic dual-hash idempotency in **under 1 millisecond (~0.42ms average latency)** of transient V8 compute. 
 
