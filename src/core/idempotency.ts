@@ -45,6 +45,13 @@ export class EphemeralIdempotencyLedger {
 
     if (this.store.size >= this.maxEntries) {
       this.evictExpired(now);
+      // Force FIFO eviction if expiration sweep didn't free enough capacity
+      if (this.store.size >= this.maxEntries) {
+        const oldestKey = this.store.keys().next().value;
+        if (oldestKey !== undefined) {
+          this.store.delete(oldestKey);
+        }
+      }
     }
 
     this.store.set(fingerprint, now + ttlSeconds * 1000);
