@@ -77,8 +77,8 @@ Target schema compilation is controlled per route via tenant configuration maps 
 
 | Target Key | Primary System | Output Contract Specification |
 | :--- | :--- | :--- |
-| `` `servicetitan_v2` `` | ServiceTitan v2 | V2 Bookings/Leads client contract with structured address & typed contact arrays |
-| `` `sage_intacct` `` | Sage Intacct / ERPs | Normalized general ledger and three-way PO inventory staging schemas |
+| `servicetitan_v2` | ServiceTitan v2 | V2 Bookings/Leads client contract with structured address & typed contact arrays |
+| `sage_intacct` | Sage Intacct / ERPs | Normalized general ledger and three-way PO inventory staging schemas |
 
 ---
 
