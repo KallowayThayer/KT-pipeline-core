@@ -1,6 +1,6 @@
 # Kalloway & Thayer Pipeline Core
 
-> **Sub-Millisecond Enterprise Ingestion & Telemetry Middleware for ServiceTitan & Jobber**
+> **Sub-Millisecond Enterprise Ingestion & Telemetry Middleware for ServiceTitan & Enterprise ERPs**
 
 ## Overview
 
