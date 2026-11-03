@@ -26,7 +26,7 @@ Stateless edge ingestion interfaces engineered for multi-branch home service pla
 
 This repository contains the **public open-core ingress primitives, cryptographic verification shell, and TypeScript interfaces** (`@kallowaythayer/kt-pipeline-core`).
 
-Downstream production adapters—including **ServiceTitan v2** (OAuth 2.0 M2M token pooling, Business Unit alignment, Inventory/PO WAC circuit breakers), **Jobber GraphQL**, automated PII-redacted DLQ replay workers, and regional TCPA quiet-hour state ledgers—are maintained in our private enterprise deployment repository and provisioned on isolated client edge gateways.
+Downstream production adapters—including **ServiceTitan v2** (OAuth 2.0 M2M token pooling, Business Unit alignment, Inventory/PO WAC circuit breakers), **Enterprise ERPs**, automated PII-redacted DLQ replay workers, and regional TCPA quiet-hour state ledgers—are maintained in our private enterprise deployment repository and provisioned on isolated client edge gateways.
 
 ---
 
