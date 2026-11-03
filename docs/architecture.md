@@ -4,12 +4,11 @@
 
 ## Overview
 
-`KT-pipeline-core` is a high-throughput, fault-tolerant ingestion proxy engineered to normalize, sanitize, and validate inbound webhooks and lead payloads before they hit downstream field service CRMs (ServiceTitan, Jobber, Housecall Pro, HubSpot, Salesforce,GoHighLevel & Enterprise ERPs).
+`KT-pipeline-core` is a high-throughput, fault-tolerant ingestion proxy engineered to normalize, sanitize, and validate inbound webhooks and lead payloads before they hit downstream field service CRMs (ServiceTitan & Enterprise ERPs).
 
-Designed to operate in zero-trust, high-concurrency production environments, the engine executes multi-tenant edge routing, in-memory telephony sanitization, and deterministic dual-hash idempotency in **under 1 millisecond (~0.42ms average latency)** of transient V8 compute. 
+Designed to operate in zero-trust, high-concurrency production environments, the engine executes multi-tenant edge routing, in-memory telephony sanitization, and deterministic dual-hash idempotency in **under 1 millisecond (~0.4ms average latency)** of transient V8 compute. 
 
-- **Extreme Concurrency Benchmarks:** Adversarial stress-tested at **1,000 concurrent webhooks in 329.74 ms** with **0 socket drops** and a minimal **5.1 MB RAM memory footprint** on a bare-metal V8 native edge runtime.
-
+- **Extreme Concurrency Benchmarks:** Adversarial stress-tested at **1,000 concurrent webhooks in 317 ms** with **0 socket drops** and a minimal **5.1 MB RAM memory footprint** on a bare-metal V8 native edge runtime.
 
 ---
 
@@ -78,12 +77,8 @@ Target schema compilation is controlled per route via tenant configuration maps 
 
 | Target Key | Primary System | Output Contract Specification |
 | :--- | :--- | :--- |
-| `servicetitan_v2` | ServiceTitan | V2 Leads/Bookings client contract with structured address & typed contact arrays |
-| `jobber_graphql` | Jobber | GraphQL `clientCreate` input payload with billing/property address mapping |
-| `housecall_pro` | Housecall Pro | Customer + addressable property payload with E.164 mobile & structured notes |
-| `hubspot_v3` | HubSpot | v3 Contacts `properties` object map for lifecycle synchronization |
-| `salesforce_lead` | Salesforce | Standard `Lead` SObject payload (`FirstName`, `LastName`, `Company`, `Phone`) |
-| `gohighlevel_v2` | GoHighLevel | v2 Contact inbound schema with automated pipeline tagging (`kt-sanitized`) |
+| `servicetitan_v2` | ServiceTitan v2 | V2 Bookings/Leads client contract with structured address & typed contact arrays |
+| `sage_intacct` | Sage Intacct / ERPs | Normalized general ledger and three-way PO inventory staging schemas |
 
 ---
 
