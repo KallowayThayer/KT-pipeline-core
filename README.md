@@ -93,9 +93,6 @@ Live Edge Validation & Interactive Telemetry
 
 To audit real-world schema sanitization, multi-CRM routing, and sliding-window idempotency against messy, unformatted payloads (including phone extensions, single-line unparsed addresses, and simulated schema drift), access the live interactive pipeline audit directly on our site.
 
-
-## Architectural Deep Dives
-
 For ongoing production write-ups, failure-mode analyses, and performance audits on native V8 edge ingestion, explore the engineering log at **[dev.to/kallowaythayer](https://dev.to/kallowaythayer)**.
 
 Test the live edge engine or submit custom target schemas for asynchronous integration review at kallowaythayer.com
