@@ -95,6 +95,6 @@ To audit real-world schema sanitization, multi-CRM routing, and sliding-window i
 
 For ongoing production write-ups, failure-mode analyses, and performance audits on native V8 edge ingestion, explore the engineering log at **[dev.to/kallowaythayer](https://dev.to/kallowaythayer)**.
 
-Test the live edge engine or submit custom target schemas for asynchronous integration review at kallowaythayer.com
+Test the live edge engine or submit custom target schemas for asynchronous integration review at **[kallowaythayer.com](kallowaythayer.com)**.
 
 Operated strictly as an asynchronous engineering consultancy. Zero sales calls.
