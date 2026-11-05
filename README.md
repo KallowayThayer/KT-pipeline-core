@@ -2,7 +2,7 @@
 
 **Sub-Millisecond Enterprise Ingestion & Payload Normalization Primitives for ServiceTitan & Enterprise ERPs**
 
-Stateless edge ingestion interfaces engineered for multi-branch home service platforms, PE trade roll-ups, and high-volume trade contractors. Intercepts raw webhooks from Google LSA, Meta Lead Ads, aggregators, and regional web forms to guarantee clean, deduplicated downstream CRM injection with zero PII stored at rest.
+Stateless edge ingestion interfaces engineered for multi-branch home service platforms, PE trade roll-ups, and high-volume trade contractors. Intercepts raw webhooks from Google LSA, Meta Lead Ads, aggregators, and regional web forms to guarantee clean, deduplicated downstream CRM injection with zero PII stored at rest. Stops dropped ServiceTitan leads caused by morning concurrency spikes and Zapier timeout failures.
 
 ---
 
@@ -91,7 +91,7 @@ JSON
 ```
 Live Edge Validation & Interactive Telemetry
 
-To audit real-world schema sanitization, multi-CRM routing, and sliding-window idempotency against messy, unformatted payloads (including phone extensions, single-line unparsed addresses, and simulated schema drift), access the live interactive pipeline audit directly on our site.
+To audit real-world schema sanitization, multi-CRM routing, and sliding-window idempotency against messy, unformatted payloads (including phone extensions, single-line unparsed addresses, and simulated schema drift), access the live interactive pipeline audit directly on our site. Handles sliding-window idempotency and HTTP 429 backpressure protection at the network edge and performs atomic E.164 phone normalization and JSON heap sanitization before data reaches enterprise CRM intake boards.
 
 For ongoing production write-ups, failure-mode analyses, and performance audits on native V8 edge ingestion, explore the engineering log at **[dev.to/kallowaythayer](https://dev.to/kallowaythayer)**.
 
