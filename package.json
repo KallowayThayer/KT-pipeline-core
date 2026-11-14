@@ -1,0 +1,29 @@
+{
+  "name": "@kallowaythayer/kt-pipeline-core",
+  "version": "1.0.0",
+  "description": "Open-core ingress interfaces, constant-time HMAC verification, and dual-hash idempotency primitives for high-volume trade CRM pipelines.",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "typecheck": "tsc --noEmit",
+    "bench": "node --import tsx/esm benchmarks/ingress.bench.ts"
+  },
+  "keywords": [
+    "servicetitan",
+    "sage-intacct",
+    "webhook",
+    "idempotency",
+    "e164",
+    "middleware",
+    "edge"
+  ],
+  "author": "Kalloway & Thayer Systems LLC <https://kallowaythayer.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^22.20.5",
+    "tsx": "^4.23.15",
+    "typescript": "^5.9.3"
+  }
+}
