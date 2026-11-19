@@ -13,7 +13,7 @@ Multi-branch trade fleets and post-merger PE roll-ups silently lose **6% to 9%**
 
 Kalloway & Thayer provisions **zero-dependency Node.js V8 edge runtimes** directly ahead of ServiceTitan v2 (CRM Bookings, Leads, Dispatch, Inventory/POs) and enterprise financial ledgers (Sage Intacct, NetSuite, custom warehouse ERPs).
 
-- **Compute Latency:** `0.011ms` per payload transformation (`11.0ms` per 1,000-request concurrent burst; `0` socket drops).
+- **Compute Latency:** `0.011ms` average per payload across a `1,000`-request concurrent burst (`11.0ms` total burst; `0.05ms` single-payload compute benchmark; `0` socket drops).
 - **Memory Footprint:** `5.1 MB` isolated V8 runtime per tenant.
 - **Zero Persistent PII at Rest:** All NANP/E.164 telephony parsing (including extension extraction to CRM memo fields), address structuring, and schema compilation execute strictly in volatile RAM. Buffers release to V8 garbage collection immediately upon downstream HTTP 2xx acceptance.
 
@@ -39,7 +39,7 @@ Kalloway & Thayer provisions **zero-dependency Node.js V8 edge runtimes** direct
 
 ### 4. 72-HOUR SANDBOX-TO-CUTOVER PROTOCOL
 
-We operate 100% asynchronously via documented engineering channels—zero discovery calls, zero disruption to live dispatch boards.
+We operate async-first via documented engineering channels—zero routine discovery calls, zero disruption to live dispatch boards.
 
 - **Phase 1 (Hour 0–24) Sandbox Provisioning:** Client/Partner submits sample raw inbound JSON payloads (or target webhook sources) and destination schema requirements to `weston@kallowaythayer.com`. We deploy an isolated staging endpoint to verify transformation accuracy before touching production.
 - **Phase 2 (Hour 24–48) KMS Vault & Multi-Node Wiring:** Production API credentials are vaulted via KMS link. Primary and hot-standby ingress nodes are provisioned across separate host backbones, and Dead-Letter Queue (S3/Webhook) targets are verified against a simulated 1,000-request burst.
