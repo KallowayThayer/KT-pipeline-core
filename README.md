@@ -105,7 +105,9 @@ For ongoing production write-ups, failure-mode analyses, and performance audits 
 
 - **[Pipeline Core Architecture (`docs/architecture.md`)](./docs/architecture.md):** Data-flow topology, dual-hash sliding-window TTL ledger specifications, Dead-Letter Quarantine (DLQ) redaction rules, and downstream CRM adapter contracts.
 - **[Partner & Enterprise Architecture Spec (`PARTNER_ARCHITECTURE_SPEC.md`)](./PARTNER_ARCHITECTURE_SPEC.md):** Detailed breakdown of our 72-hour sandbox-to-cutover protocol, KMS credential isolation, memory footprints (`5.1 MB`), and B2B data processing terms for ServiceTitan v2 and ERP integrations.
+- **Redundant Engineering & Emergency Escalation:** Async-first engineering operations backed by redundant engineering coverage and a dedicated emergency escalation channel (issued at onboarding) for critical production incidents.
 - **Engagement Terms & Pricing:** Flat-rate managed infrastructure at **$1,500/month per production tenant** ($0 setup fees; deploy on an isolated sandbox first).
+
 
 Test the live edge engine or submit custom target schemas for asynchronous integration review at **[kallowaythayer.com](https://kallowaythayer.com)**.
 
